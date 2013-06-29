@@ -82,7 +82,8 @@ public class Cleaner implements EnvConfigObserver {
 	 * Configuration parameters are non-private for use by FileProcessor,
 	 * UtilizationTracker.
 	 */
-	long lockTimeout;
+	// changed to public
+	public long lockTimeout;
 
 	int readBufferSize;
 
@@ -116,13 +117,15 @@ public class Cleaner implements EnvConfigObserver {
 
 	private String name;
 
-	private EnvironmentImpl env;
+	// changed to public
+	public EnvironmentImpl env;
 
 	UtilizationProfile profile;
 
 	private UtilizationTracker tracker;
 
-	FileSelector fileSelector;
+	// changed to public
+	public FileSelector fileSelector;
 
 	private Object deleteFileLock;
 
@@ -1108,7 +1111,8 @@ public class Cleaner implements EnvConfigObserver {
 	 * Adds the DB ID to the pending DB set if it is being deleted but deletion
 	 * is not yet complete.
 	 */
-	void addPendingDB(DatabaseImpl db) {
+	// changed to public
+	public void addPendingDB(DatabaseImpl db) {
 		// refined trace
 		/*
 		 * if (db != null && db.isDeleted() && !db.isDeleteFinished()) {

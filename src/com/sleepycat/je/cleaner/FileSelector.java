@@ -24,7 +24,8 @@ import com.sleepycat.je.tree.LN;
 /**
  * Keeps track of the status of files for which cleaning is in progres.
  */
-class FileSelector {
+//changed to public
+public class FileSelector {
 
 	/*
 	 * Each file for which cleaning is in progress is in one of the following
@@ -364,7 +365,8 @@ class FileSelector {
 	 * Returns an array of DatabaseIds for DBs that were pending deletion in a
 	 * prior cleaning attempt, or null if no DBs are pending.
 	 */
-	synchronized DatabaseId[] getPendingDBs() {
+	// changed to public
+	public synchronized DatabaseId[] getPendingDBs() {
 
 		if (pendingDBs.size() > 0) {
 			DatabaseId[] dbs = new DatabaseId[pendingDBs.size()];
@@ -378,7 +380,8 @@ class FileSelector {
 	/**
 	 * Removes the DatabaseId from the pending DB set.
 	 */
-	synchronized void removePendingDB(DatabaseId dbId) {
+	// changed to public
+	public synchronized void removePendingDB(DatabaseId dbId) {
 
 		pendingDBs.remove(dbId);
 		updateProcessedFiles();

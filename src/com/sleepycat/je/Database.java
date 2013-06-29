@@ -55,7 +55,8 @@ public class Database {
 	/* Handles onto the owning environment and the databaseImpl object. */
 	Environment envHandle; // used by subclasses
 
-	private DatabaseImpl databaseImpl;
+	// changed to public
+	public DatabaseImpl databaseImpl;
 
 	DatabaseConfig configuration; // properties used at execution
 

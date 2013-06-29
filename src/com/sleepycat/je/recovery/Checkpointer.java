@@ -68,7 +68,8 @@ public class Checkpointer {
 
 	public final static long BYTES_INTERVAL = 20000000;
 
-	private EnvironmentImpl envImpl;
+	// changed to public
+	public EnvironmentImpl envImpl;
 
 	private LogManager logManager;
 
@@ -98,7 +99,8 @@ public class Checkpointer {
 	 * For future addition to stats: private int nAlreadyEvictedThisRun;
 	 */
 
-	private volatile int highestFlushLevel;
+	// changed to public
+	public volatile int highestFlushLevel;
 
 	public Checkpointer(EnvironmentImpl envImpl) throws DatabaseException {
 
@@ -527,7 +529,8 @@ public class Checkpointer {
 	/**
 	 * Flush the target IN.
 	 */
-	private void flushIN(CheckpointReference targetRef, Map dirtyMap,
+	// changed to public
+	public void flushIN(CheckpointReference targetRef, Map dirtyMap,
 			int currentLevel, boolean logProvisionally, boolean allowDeltas,
 			long checkpointStart) throws DatabaseException {
 
@@ -878,7 +881,8 @@ public class Checkpointer {
 	 * The class and ctor are public for the Sizeof program.
 	 */
 	public static class CheckpointReference {
-		DatabaseImpl db;
+		// changed to public
+		public DatabaseImpl db;
 
 		long nodeId;
 

@@ -104,7 +104,8 @@ public class PackedOffsets implements LogWritable, LogReadable {
 	/**
 	 * An iterator over all offsets.
 	 */
-	class Iterator {
+	// changed to public
+	public class Iterator {
 
 		private int index;
 

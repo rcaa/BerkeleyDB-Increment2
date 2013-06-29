@@ -91,7 +91,8 @@ public class FileManager {
 
 	private long maxFileSize;
 
-	private File dbEnvHome;
+	// changed to public
+	public File dbEnvHome;
 
 	/* True if .del files should be included in the list of log files. */
 	private boolean includeDeletedFiles = false;

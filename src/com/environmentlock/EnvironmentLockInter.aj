@@ -2,76 +2,28 @@ package com.environmentlock;
 
 import java.io.File;
 import java.io.IOException;
-import com.sleepycat.je.DatabaseException;
-import com.sleepycat.je.cleaner.Cleaner;
-import com.sleepycat.je.log.*;
-import com.sleepycat.je.dbi.EnvironmentImpl;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
 
-public privileged aspect EnvironmentLockAbstract {
+import com.sleepycat.je.DatabaseException;
+import com.sleepycat.je.log.FileManager;
+import com.sleepycat.je.log.LogException;
 
-	pointcut hook_lockEnvironment(Cleaner c) : execution(boolean Cleaner.hook_lockEnvironment()) && this(c);
-	
-	pointcut fileManagerConstructor(boolean readOnly, FileManager fm, File dbEnvHome) 
-	: execution(FileManager.new(EnvironmentImpl,File,boolean)) && 
-		args(EnvironmentImpl, dbEnvHome,readOnly) && this(fm);
-	
-	pointcut hook_releaseEnvironment(Cleaner c) : execution(void Cleaner.hook_releaseEnvironment()) && this(c);
-	
-	pointcut close(FileManager fm) : execution(void FileManager.close()) && this(fm);
-	
-	boolean around(Cleaner c) throws DatabaseException : hook_lockEnvironment(c) {
-		if (!proceed(c))
-			return false;
-		/*
-		 * If we can't get an exclusive lock, then there are reader processes
-		 * and we can't delete any cleaned files.
-		 */
-		if (!c.env.getFileManager().lockEnvironment(false, true)) {
-			// refined trace Tracer.trace(Level.SEVERE, env, "Cleaner has "
-			// + safeFiles.size() +" files not deleted because of read-only
-			// processes.");
-			return false;
-		}
-		return true;
-	}
-
-	before(boolean readOnly, FileManager fm, File dbEnvHome)
-			throws DatabaseException : fileManagerConstructor(readOnly, fm, dbEnvHome) {
-		fm.dbEnvHome = dbEnvHome;
-		fm.lockEnvironment(readOnly, false);
-	}
-
-	before(Cleaner c) throws DatabaseException : hook_releaseEnvironment(c) {
-		c.env.getFileManager().releaseExclusiveLock();
-	}
-
-	after(FileManager fm) throws IOException, DatabaseException : close(fm) {
-		if (fm.exclLock != null) {
-			fm.exclLock.release();
-		}
-		if (fm.lockFile != null) {
-			fm.lockFile.close();
-		}
-		if (fm.channel != null) {
-			fm.channel.close();
-		}
-		if (fm.envLock != null) {
-			fm.envLock.release();
-		}
-	}
-	
+public privileged aspect EnvironmentLockInter {
 	/* The channel and lock for the je.lck file. */
-	private RandomAccessFile FileManager.lockFile;
+	// changed to public
+	public RandomAccessFile FileManager.lockFile;
 
-	private FileChannel FileManager.channel;
+	// changed to public
+	public FileChannel FileManager.channel;
 
-	private FileLock FileManager.envLock;
+	// changed to public
+	public FileLock FileManager.envLock;
 
-	private FileLock FileManager.exclLock;
+	// changed to public
+	public FileLock FileManager.exclLock;
 	
 	/**
 	 * Lock the environment. Return true if the lock was acquired. If exclusive

@@ -67,7 +67,8 @@ public class EnvironmentImpl implements EnvConfigObserver {
 
 	private boolean isNoLocking; // true if env has no locking
 
-	private boolean isReadOnly; // true if env opened with the read only flag.
+	// changed to public
+	public boolean isReadOnly; // true if env opened with the read only flag.
 
 
 
@@ -87,7 +88,8 @@ public class EnvironmentImpl implements EnvConfigObserver {
 	private INList inMemoryINs;
 
 	/* Services */
-	private DbConfigManager configManager;
+	// changed to public
+	public DbConfigManager configManager;
 
 	private List configObservers;
 

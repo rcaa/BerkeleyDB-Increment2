@@ -36,7 +36,8 @@ public final class LNInfo {
 		this.dupKey = dupKey;
 	}
 
-	LN getLN() {
+	// changed to public
+	public LN getLN() {
 		return ln;
 	}
 

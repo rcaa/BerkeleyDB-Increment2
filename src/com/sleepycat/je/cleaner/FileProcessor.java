@@ -70,7 +70,8 @@ public class FileProcessor {
 
 	private EnvironmentImpl env;
 
-	private Cleaner cleaner;
+	// changed to public
+	public Cleaner cleaner;
 
 	private FileSelector fileSelector;
 
@@ -430,7 +431,8 @@ public class FileProcessor {
 		return true;
 	}
 
-	private void hook_beforeProcess() throws DatabaseException {
+	// changed to public
+	public void hook_beforeProcess() throws DatabaseException {
 		// TODO Auto-generated method stub
 
 	}
@@ -452,7 +454,8 @@ public class FileProcessor {
 	 * @param info
 	 * @param offset
 	 */
-	private void processLN(Long fileNum, TreeLocation location, Long offset,
+	// changed to public
+	public void processLN(Long fileNum, TreeLocation location, Long offset,
 			LNInfo info, /* //LAC LookAheadCache lookAheadCache, */Map dbCache)
 			throws DatabaseException {
 
@@ -584,7 +587,8 @@ public class FileProcessor {
 	 *            is non-null for a DupCountLN only; if non-null, is latched on
 	 *            method entry and exit.
 	 */
-	private void processFoundLN(LNInfo info, long logLsn, long treeLsn,
+	// changed to public
+	public void processFoundLN(LNInfo info, long logLsn, long treeLsn,
 			BIN bin, int index, DIN parentDIN) throws DatabaseException {
 
 		LN ln = info.getLN();

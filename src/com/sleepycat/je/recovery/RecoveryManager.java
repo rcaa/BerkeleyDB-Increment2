@@ -72,7 +72,8 @@ public class RecoveryManager {
 
 	private static final int CLEAR_INCREMENT = 50;
 
-	private EnvironmentImpl env;
+	// changed to public
+	public EnvironmentImpl env;
 
 	private int readBufferSize;
 
